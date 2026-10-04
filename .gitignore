@@ -1,0 +1,8 @@
+# SQLForge
+data/
+results/*.json
+!results/summary.md
+mlruns/
+*.safetensors
+checkpoints/
+.env
