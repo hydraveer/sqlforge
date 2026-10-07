@@ -1,0 +1,6 @@
+{
+  "editor.inlineSuggest.enabled": false,
+  "github.copilot.editor.enableAutoCompletions": false,
+  "editor.quickSuggestions": { "other": true, "comments": false, "strings": false },
+  "editor.wordBasedSuggestions": "currentDocument"
+}

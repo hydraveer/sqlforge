@@ -8,7 +8,7 @@ def load_model(model_id: str)-> LLM:
     Args:
         model_id: e.g. "Qwen/Qwen2.5-Coder-1.5B-Instruct".
     """
-    return LLM(model=model_id, dtype="auto", max_model_len=4096)
+    return LLM(model=model_id, dtype="half", max_model_len=4096)
 
 def generate(llm: LLM, messages_batch: list[list[dict[str, str]]])->list[str]:
     """Generate one response per conversation.

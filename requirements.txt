@@ -1,0 +1,5 @@
+vllm
+transformers
+tqdm
+pandas
+pytest
