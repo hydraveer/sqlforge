@@ -25,6 +25,7 @@ def execute_sql(db_path: Path, sql: str, timeout_s: float = 5.0)-> list[tuple]:
         return int(time.monotonic() > deadline)
 
     with closing(sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)) as conn:
+        conn.text_factory = lambda b: b.decode("utf-8", errors="replace")
         conn.set_progress_handler(_check_timeout, 10_000)
         return conn.execute(sql).fetchall()
 

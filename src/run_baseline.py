@@ -59,9 +59,9 @@ def main() -> None:
         "total_seconds": round(time.monotonic() - start, 1),
     }
 
-    out_path = args.out or Path("results") / f"{args.model.split('/')[-1]}.json"
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(json.dumps({"summary": summary, "rows": rows}, indent=2))
+    preds_path = Path("results") / f"{args.model.split('/')[-1]}_preds.json"
+    preds_path.parent.mkdir(parents=True, exist_ok=True)
+    preds_path.write_text(json.dumps(preds, indent=2))
 
     print(json.dumps(summary, indent=2))
 
