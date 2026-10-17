@@ -13,11 +13,27 @@ End-to-end LLMOps platform for Text-to-SQL.
 - [ ] Week 6: Demo + design doc
 
 ## Results
-| Model | Execution Accuracy |
+## Baseline results (Spider dev, 1,034 examples)
+
+| Model | Exec Accuracy (strict) | Error Rate |
+|---|---|---|
+| Qwen2.5-Coder-1.5B (base) | 60.4% | 18.0% |
+| Qwen2.5-Coder-3B (base) | 65.0% | 11.2% |
+
+### Failure analysis (1.5B, 407 wrong)
+| Category | Count |
 |---|---|
-| Qwen2.5-Coder-1.5B (base) | TBD |
-| Qwen2.5-Coder-3B (base) | TBD |# sqlforge
-End-to-end LLMOps platform for Text-to-SQL: QLoRA fine-tuning, MLflow model registry, vLLM serving on EKS, CI eval gates, and Prometheus/Grafana monitoring.
+| Ran but wrong result | 224 |
+| Column from wrong table (schema linking) | 138 |
+| Hallucinated column | 34 |
+| Hallucinated table | 7 |
+| Other / degenerate | 4 |
+
+**Main weakness:** schema linking — 75% of SQL errors use a real column from the wrong table.
+
+**Evaluator audit:** 29 of the 224 silent failures differ only in column order,
+so strict accuracy understates the model by up to ~2.8 points. All models are
+scored with the same strict evaluator (v1) for fair comparison.
 
 ## How to run
 
